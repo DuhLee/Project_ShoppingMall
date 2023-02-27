@@ -129,11 +129,6 @@ a:hover {
     padding: 0px 10px 5px 10px;
   }
 
-  .ec_wr_name {
-    white-space : nowrap;
-    overflow:hidden;
-    text-overflow: ellipsis;
-  }
 
   #picture {
     width: 70px;
