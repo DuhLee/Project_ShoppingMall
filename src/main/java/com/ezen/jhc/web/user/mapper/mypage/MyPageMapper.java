@@ -2,6 +2,7 @@ package com.ezen.jhc.web.user.mapper.mypage;
 
 
 
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -12,7 +13,8 @@ import com.ezen.jhc.web.user.dto.order.OrderDTO;
 import com.ezen.jhc.web.user.dto.order.OrderDetailDTO;
 import com.ezen.jhc.web.user.dto.review.ReviewDTO;
 
-// 김주11희 - 마이페이지 Mapper
+// 김주희 - 마이페이지 Mapper
+
 // 정수정
 public interface MyPageMapper {
 	
@@ -40,6 +42,7 @@ public interface MyPageMapper {
 	Integer addReview(@Param("p_num")Integer p_num, @Param("mem_num")Integer mem_num, @Param("review_content")String review_content, 
 			@Param("review_image_path")String review_image_path, @Param("review_star")Integer review_star);
 	
+
 	// 작성한 리뷰 이미지 추가 쿼리문
 	@Insert("INSERT INTO reivews VALUES(review_num_seq.NEXTVAL, "
 			+ "#{p_num},#{mem_num},#{review_content},#{review_image_path},#{review_star},sysdate)")
@@ -53,5 +56,10 @@ public interface MyPageMapper {
 			+ "and pd.pd_num = od.pd_num and pd.p_num = p.p_num and pi.p_num = p.p_num and pd.pd_num = od.pd_num and pc.pc_num = pd.pc_num"
 			+ " order by ord_date desc")
 	List <OrderDetailDTO> getOrderHistory(@Param("mem_num")Integer mem_num);
+
+	
+	// 주문 내역
+//	@Select ()
+//	OrderDTO getOrderHistory(int mem_num);
 
 }
