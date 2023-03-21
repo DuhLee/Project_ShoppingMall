@@ -34,8 +34,13 @@ h2 {
 }
 
 .title_area {
+<<<<<<< HEAD
     margin-top: 20px;
     height: 120px;
+=======
+    height: 120px;
+    background-color: rgb(248, 249, 250);
+>>>>>>> refs/heads/kimjuhee
     background-color: rgb(248, 249, 250);
 }
 
@@ -134,7 +139,6 @@ table {
     width: 900px;
     height: auto;
     display: grid;
-    grid-template-rows: 0.3fr 1fr;
     margin-bottom: 50px;
     background-color: white;
 }

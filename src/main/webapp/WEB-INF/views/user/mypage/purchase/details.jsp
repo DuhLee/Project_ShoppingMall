@@ -42,14 +42,14 @@
                                 </tr>
                                 <tr>
 	                                     
-                                    <th scope="row">주문처리상태</th>
+                         			<th scope="row">주문처리상태</th>
                                     <td>
                                         <c:if test="${order.status_name  eq '입금 전' }" >
 	                                     ${order.status_name }
 	                                     <script>
 	                                     const ord_num = parseInt("${order.ord_num}");
 										  </script>
-	                                      <button type="button" class="order_cancellation">주문취소</button>
+	                                      <button type="button" class="order_cancellation" onclick="location.href='<%=request.getContextPath() %>/order/cancel">주문취소</button>
 	                
                                         </c:if>
                                         <c:if test="${order.status_name ne '입금 전' }">
@@ -161,10 +161,13 @@
                                     <tbody class="product_link">
                                     
                                     <c:forEach items="${orderDetails }" var="od">
-                               
+
                                         <tr class="link_record">
+
                                             <td class="thumb">                                              
-                                               <img id="pd_img" src="${od.origin_img_path }" alt="상품 사진">                      
+                                            
+                                               <img id="pd_img" src="${od.origin_img_path }" alt="상품 사진">       
+
                                             </td>
                                             <td class="product_info">
                                                     <a href="/jhc/product_details?p_num=${od.p_num}">${od.p_name }</a>                            
