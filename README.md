@@ -75,4 +75,4 @@ onclick을 통해 내가 원하는 값을 받아오는 get 주소를 javascript�
 
 <br>
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JUUHEEEEE&layout=compact)](https://github.com/JUUHEEEEE/github-readme-stats)
+
