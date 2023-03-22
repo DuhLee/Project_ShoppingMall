@@ -46,7 +46,8 @@ public class ImageViewController {
 			HttpHeaders header = new HttpHeaders();
 			
 			header.add("Content-type", Files.probeContentType(file.toPath()));
-			
+			log.info(header);
+			log.info(Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 			
 		} catch (IOException e) {

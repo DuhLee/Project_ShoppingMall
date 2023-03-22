@@ -209,13 +209,15 @@ var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq' // 테스트용 클라이
   // 2. 초기화
 var tossPayments = TossPayments(clientKey);
 
+const phoneRegex = /01[012679]\d{7,8}/;
+
 for (i = 0; i < payButtons.length; ++i) {
 	let payment = i;
 	payButtons[i].addEventListener('click', (e) => {
 		e.preventDefault();
 		for (j = 0; j < inputs.length; ++j) {
 			if (inputs[j].className == 'emptyCheck') {
-				if (inputs[j].value == '') {
+				if (inputs[j].value == '' || (inputs[j].id == 'recipientPhone' && !phoneRegex.test(inputs[j].value))) {
 					inputs[j].focus();
 					tf = false;
 					break;

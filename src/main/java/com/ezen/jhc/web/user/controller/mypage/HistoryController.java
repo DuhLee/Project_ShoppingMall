@@ -40,7 +40,7 @@ public class HistoryController {
 		Integer mem_num = member.getMem_num();
 
 		List<OrderDTO> orders = historyService.getOrderHistory(mem_num);
-
+				
 		model.addAttribute("orders", orders);
 		return "user/mypage/purchase/history";
 	}
@@ -69,7 +69,6 @@ public class HistoryController {
 		if(start_date =="" && end_date == "" && ord_status =="") {
 			orders = historyService.getOrderHistory(mem_num);
 		}
-		
 	
 		model.addAttribute("ord_status", ord_status);
 		model.addAttribute("start_date", start_date);

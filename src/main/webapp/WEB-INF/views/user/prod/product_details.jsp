@@ -98,6 +98,16 @@
 								<div class="sizeHover">${size.ps_name}</div>
 							</c:forEach>
 						</div>
+						<b class="subTitle">수량</b>
+						<div id="productQuantity">
+							<table class="quantityTable">
+								<tr>
+									<td class="minus" data-action="decrement"></td>
+									<td id="quantity">1</td>
+									<td class="plus" data-action="increment"></td>
+								</tr>
+							</table>
+						</div>
 					</div>
 				</div>
 				

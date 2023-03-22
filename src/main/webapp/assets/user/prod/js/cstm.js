@@ -822,7 +822,26 @@ for (i = 0; i < buttons.length; ++i) {
   });
 }
 
+
+const quantity = document.getElementById('quantity');
+
+// 수량 변경 관리
+document.querySelector('.plus').addEventListener('click', (e) => {
+  if (parseInt(quantity.innerText) < 99) {
+    quantity.innerText =  parseInt(quantity.innerText) + 1;
+  }
+});
+
+document.querySelector('.minus').addEventListener('click', (e) => {
+  if (parseInt(quantity.innerText) > 1) {
+    quantity.innerText =  parseInt(quantity.innerText) - 1;
+  }
+});
+
+
+// 바로구매 버튼
 buttons[0].addEventListener('click', (e) => {
+  let quantityNum = parseInt(quantity.innerText);
   e.preventDefault();
   // cstm, cart insert
   const xhttp = new XMLHttpRequest();
@@ -849,7 +868,8 @@ buttons[0].addEventListener('click', (e) => {
         p_price : p_price,
         pc_name : colorName.innerText,
         ps_name : ps_name,
-        p_name : p_name
+        p_name : p_name,
+        cart_quantity : quantityNum
       };
 
       xhttp2.send(JSON.stringify(jsonObj2));
@@ -857,7 +877,6 @@ buttons[0].addEventListener('click', (e) => {
       xhttp2.addEventListener('readystatechange', () => {
         if (xhttp2.status == 200 && xhttp2.readyState == 4) {
           cart_num.value = xhttp2.responseText;
-          console.log(cart_num.value);
           orderForm.submit();
         }
       });
@@ -866,7 +885,9 @@ buttons[0].addEventListener('click', (e) => {
 });
 
 
+// 장바구니 담기 버튼
 buttons[1].addEventListener('click', () => {
+  let quantityNum = parseInt(quantity.innerText);
   // cstm, cart insert
   const xhttp = new XMLHttpRequest();
 
@@ -892,7 +913,8 @@ buttons[1].addEventListener('click', () => {
         p_price : p_price,
         pc_name : colorName.innerText,
         ps_name : ps_name,
-        p_name : p_name
+        p_name : p_name,
+        cart_quantity : quantityNum
       };
 
       xhttp2.send(JSON.stringify(jsonObj2));

@@ -62,7 +62,7 @@
 				</div>
 				<div class="columnGrid">
 					<div>연락처</div>
-					<input type="text" class="emptyCheck" name="receiver_phone" id="recipientPhone"
+					<input type="text" class="emptyCheck" pattern="01[012679][0-9]{7,8}" name="receiver_phone" id="recipientPhone"
 						placeholder="- 없이 00000000000" form="orderCompleted"/>
 				</div>
 				<div id="destination" class="columnGrid">
