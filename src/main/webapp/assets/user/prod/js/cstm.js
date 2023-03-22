@@ -163,11 +163,12 @@ stage.on('mousedown', function (e) {
 
 const colorName = document.getElementById('colorName');
 
+var background = null;
 // 배경 이미지 생성 및 추가/변경
 function setBackground() {
   var backgroundImg = new Image();
   backgroundImg.onload = function () {
-    var background = new Konva.Image({
+    background = new Konva.Image({
       x: 100,
       y: 0,
       image: backgroundImg,
@@ -180,7 +181,6 @@ function setBackground() {
     layer.add(background);
   };
 
-  // 기본 설정이 검은색 맨투맨 -> 사용자가 선택한 상품 사진으로 수정해야함
   if (!url) {
     backgroundImg.src = colorName.dataset.imagepath;
   } else {
@@ -206,6 +206,7 @@ window.onload = function () {
 
       url = e.target.dataset.imagepath;
 
+      background.remove();
       setBackground();
 
       // 색상 누르면 밝기 구분해서 어두우면 rect 흰색으로 밝으면 검은색으로 변경
@@ -758,7 +759,6 @@ for (i = 0; i < sampleIconList.length; ++i) {
 
 // 구매, 장바구니 버튼 누르면 이미지 저장 후 이동
 const buttons = document.getElementsByClassName('buttons');
-const loginBtn = document.querySelector('.sign_in');
 const orderForm = document.getElementById('orderForm');
 const cartPopUp = document.getElementById('cartPopUp');
 const cart_num = document.getElementById('cart_num');
@@ -899,3 +899,15 @@ buttons[1].addEventListener('click', () => {
     }
   });
 });
+
+
+// 커스텀 하거나 장바구니, 바로구매 버튼 눌렀을 때 비로그인 상태면 로그인 팝업 띄우기
+const loginCheck = document.getElementsByClassName('loginCheck');
+
+for (i = 0; i < loginCheck.length; ++i) {
+  loginCheck[i].addEventListener('click', (e) => {
+    if (!mem_num) {
+      loginBtn.click();
+    }
+  });
+}

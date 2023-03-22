@@ -98,7 +98,7 @@ public class CartServiceImpl implements CartService {
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String newFolder = LocalDateTime.now().format(formatter).replace("-", File.separator);
-		String image = "C:\\upload\\cstm_img\\" + newFolder + File.separator + req.getParameter("mem_cstm_path");
+		String image = "C:\\upload\\" + newFolder + File.separator + req.getParameter("mem_cstm_path");
 		
 		int pd_num = prodMapper.getProdDetailByIntoCartDto(
 				new IntoCartDTO(

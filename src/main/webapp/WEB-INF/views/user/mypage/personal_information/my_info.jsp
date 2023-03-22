@@ -42,7 +42,7 @@
 					<label for="">생년월일</label>
 					<div class="input">
 						<input id="myInfo_birth" type="text" inputmode="numeric"
-							pattern="[0-9]" name="birth" value="${member.mem_birth }"
+							pattern="[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])" name="birth" value="${member.mem_birth }"
 							placeholder="예) 990110">
 	
 					</div>
@@ -51,8 +51,8 @@
 					<label for="">휴대전화번호</label>
 					<div class="input">
 						<input id="myInfo_phone" type="text" inputmode="numeric"
-							pattern="[0-9]" name="pn" value="${member.mem_phone }"
-							placeholder="예) 010-1234-1234">
+							pattern="01[012679][0-9]{7,8}" name="pn" value="${member.phoneWithOnlyNum}"
+							placeholder="예) 01012341234">
 					</div>
 				</div>
 				
@@ -72,4 +72,6 @@
 	var mem_num = "${member.mem_num}";
 </script>
 
-	<jsp:include page="/WEB-INF/views/user/common/footer.jsp" />
+<script src="<%=request.getContextPath()%>/assets/user/mypage/js/my_info.js"></script>
+
+<jsp:include page="/WEB-INF/views/user/common/footer.jsp" />

@@ -25,4 +25,11 @@ public class MemberDTO implements Serializable {
 	String mem_note;
 	Date mem_regdate;
 	Integer mem_point;
+	
+	// 회원 정보 페이지에서 -가 정규표현식에 걸려서 숫자만 있는 번호 getter 생성
+	String phoneWithOnlyNum;
+	
+	public String getPhoneWithOnlyNum() {
+		return mem_phone.replaceAll("-", "");
+	}
 }

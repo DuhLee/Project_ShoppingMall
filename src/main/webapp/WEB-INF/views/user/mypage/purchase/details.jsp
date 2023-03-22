@@ -145,13 +145,12 @@
                                             <td colspan="9">
                                     
                                                 상품 구매 금액
-                                                <strong><fmt:formatNumber value="${order.total_amount * 0.9}" pattern="###,##0"/></strong>
-                                                <span class="displaynone"> + 부가세 <fmt:formatNumber value="${order.total_amount * 0.1 }" pattern="###,##0"/></span>
-                                                + 배송비 3,000
-                                                <span class="displaynone"> - 상품할인금액 1,500</span>
+                                                <strong><fmt:formatNumber value="${totalPrice}" pattern="###,##0"/></strong>
+                                                + 배송비 ${shipping}
+                                                <span class="displaynone"> - 상품할인금액 ${discount}</span>
                                                 = 합계 :
                                                 <strong class="txtEm">
-                                                    <span class="txt18"><fmt:formatNumber value="${order.total_amount -1500+ 3000}" pattern="#,###,##0"/>원</span>
+                                                    <span class="txt18"><fmt:formatNumber value="${totalPrice - discount + shipping}" pattern="#,###,##0"/>원</span>
                                                 </strong>
                                                 <!-- <span class="dispaynone"></span> -->
                                             </td>
@@ -163,9 +162,9 @@
                                
                                         <tr class="link_record">
 
-                                            <td class="thumb">                                              
+                                            <td class="thumb">
 
-                                               <img id="pd_img" src="${od.origin_img_path }" alt="상품 사진">                      
+                                               <img id="pd_img" src="${od.origin_img_path }" alt="상품 사진">
                                                
                                             </td>
                                             <td class="product_info">
