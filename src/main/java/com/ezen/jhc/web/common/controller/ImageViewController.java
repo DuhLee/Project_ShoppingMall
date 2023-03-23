@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 
+import org.apache.catalina.util.URLEncoder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,6 @@ public class ImageViewController {
 		
 		File file = new File("C:\\upload\\" + fileName);
 
-		
 		ResponseEntity<byte[]> result = null;
 		
 		try {

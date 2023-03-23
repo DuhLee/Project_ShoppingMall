@@ -1,5 +1,8 @@
 package com.ezen.jhc.web.admin.dto.prod;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,25 +24,35 @@ public class ProdColorDTO {
 	private String pc_md_img_path;
 	private String pc_sm_img_path;
 	
-	public void setOrigin_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) {
-		this.pc_origin_img_path = pc_img_uploadpath + pc_img_uuid + pc_img_filename;
+	
+	
+	
+	public void setOrigin_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
+		String urlPath = pc_img_uploadpath + "\\" + pc_img_uuid + "_" + pc_img_filename;
+		this.pc_origin_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 	
-	public void setThumb_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) {
-		this.pc_thumb_img_path = pc_img_uploadpath + "s_" + pc_img_uuid + pc_img_filename;
+	public void setThumb_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
+		
+		String urlPath = pc_img_uploadpath + "\\s_" + pc_img_uuid  + "_" + pc_img_filename;
+		this.pc_thumb_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
-
-	public void setLg_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) {
-		this.pc_lg_img_path = pc_img_uploadpath + "lg_" + pc_img_uuid + pc_img_filename;
+	public void setLg_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
+		String urlPath = pc_img_uploadpath + "\\lg_" + pc_img_uuid  + "_" + pc_img_filename;
+		this.pc_lg_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 	
-	public void setMd_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) {
-		this.pc_md_img_path = pc_img_uploadpath + "md_" + pc_img_uuid + pc_img_filename;
+	public void setMd_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
+		String urlPath = pc_img_uploadpath + "\\md_" + pc_img_uuid  + "_" + pc_img_filename;
+		this.pc_md_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 
-	public void setSm_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) {
-		this.pc_sm_img_path = pc_img_uploadpath + "sm_" + pc_img_uuid + pc_img_filename;
+	public void setSm_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
+		String urlPath = pc_img_uploadpath + "\\sm_" + pc_img_uuid  + "_" + pc_img_filename;
+		this.pc_sm_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
+	
+	
 	
 	
 }

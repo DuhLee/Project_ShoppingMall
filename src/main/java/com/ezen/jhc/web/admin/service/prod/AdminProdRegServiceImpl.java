@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,27 +51,39 @@ public class AdminProdRegServiceImpl implements AdminProdRegService {
 	}
 
 	@Override
-	public Integer regNewProd(ProdDTO prodDTO, AttachImageListDTO imageList, ProdColorListDTO prodColors,
+	public Integer regNewProd(ProdDTO prodDTO, AttachImageDTO image, ProdColorListDTO prodColors,
 			ProdSizeListDTO prodSizes, StringBuilder p_explain, StringBuilder p_info) {
 
-		for (AttachImageDTO image : imageList.getImageList()) {
-			image.setOrigin_img_path(image.getUploadPath(), image.getUuid(), image.getSm_img_path());
-			image.setThumb_img_path(image.getUploadPath(), image.getUuid(), image.getSm_img_path());
-			image.setLg_img_path(image.getUploadPath(), image.getUuid(), image.getSm_img_path());
-			image.setMd_img_path(image.getUploadPath(), image.getUuid(), image.getSm_img_path());
-			image.setSm_img_path(image.getUploadPath(), image.getUuid(), image.getSm_img_path());
-		}
+		
+			try {
+				image.setOrigin_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
+				image.setThumb_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
+				image.setLg_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
+				image.setMd_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
+				image.setSm_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			System.out.println(image);
+			
 		List<ProdColorDTO> pcList = prodColors.getProdColors();
 		for (int i = 0; i < pcList.size(); i++) {
 			if (pcList.get(i).getPc_code() == null && pcList.get(i).getPc_name() == null) {
 				pcList.remove(i);
 			}
 			
+			try {
 			pcList.get(i).setOrigin_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
 			pcList.get(i).setThumb_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
 			pcList.get(i).setLg_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
 			pcList.get(i).setMd_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
 			pcList.get(i).setSm_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		prodColors.setProdColors(pcList);
@@ -85,14 +98,11 @@ public class AdminProdRegServiceImpl implements AdminProdRegService {
 		int resultProd = prodRegMapper.regProd(prodDTO);
 
 		log.info(prodDTO);
-		log.info(imageList);
+		log.info(image);
 		log.info(prodColors);
 
-		imageList.getImageList().forEach(attach -> {
-
-			attach.setP_num(prodDTO.getP_num());
-			log.info(prodRegMapper.regProdImage(attach));
-		});
+			image.setP_num(prodDTO.getP_num());
+			log.info(prodRegMapper.regProdImage(image));
 
 		prodColors.getProdColors().forEach(color -> {
 

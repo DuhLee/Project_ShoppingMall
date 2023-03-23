@@ -78,7 +78,7 @@
 							<!-- DB에서 가져온 색들 중 선택된 색의 이름을 색상명에 넣음 -->
 							<div>
 								<b class="subTitle"> 색상 - <span id="colorName"
-									data-imagePath="${color.pc_img_path}">${color.pc_name}</span>
+									data-imagePath="${color.pc_origin_img_path}">${color.pc_name}</span>
 								</b>
 							</div>
 							<div id="productColors">
@@ -86,7 +86,7 @@
 								<c:forEach items="${colors}" var="color">
 									<div id="${color.value.pc_code}"
 										data-name="${color.value.pc_name}"
-										data-imagePath="${color.value.pc_img_path}"></div>
+										data-imagePath="${color.value.pc_origin_img_path}"></div>
 								</c:forEach>
 							</div>
 						</div>

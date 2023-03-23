@@ -61,7 +61,7 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	public Integer recievedOrder(OrderDTO ordDTO) {
 		
 		ord = ordDTO;
-		ord.setOrd_status(2);
+		ord.setOrd_status(4);
 		
 		return orderMapper.updateOrderStatus(ord);
 	}

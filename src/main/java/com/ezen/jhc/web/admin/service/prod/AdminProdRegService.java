@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.ezen.jhc.web.admin.dto.image.AttachImageDTO;
 import com.ezen.jhc.web.admin.dto.image.AttachImageListDTO;
 import com.ezen.jhc.web.admin.dto.prod.MainCtgrDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdColorListDTO;
@@ -39,5 +40,5 @@ public interface AdminProdRegService {
 	 * @param prodSizes
 	 * @return Integer result
 	 */
-	public Integer regNewProd(ProdDTO prodDTO, AttachImageListDTO imageList, ProdColorListDTO prodColors, ProdSizeListDTO prodSizes,StringBuilder p_explain,StringBuilder p_info);
+	public Integer regNewProd(ProdDTO prodDTO, AttachImageDTO image, ProdColorListDTO prodColors, ProdSizeListDTO prodSizes,StringBuilder p_explain,StringBuilder p_info);
 }

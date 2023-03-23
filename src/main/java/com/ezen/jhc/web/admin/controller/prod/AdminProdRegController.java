@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ezen.jhc.web.admin.dto.image.AttachImageDTO;
-import com.ezen.jhc.web.admin.dto.image.AttachImageListDTO;
 import com.ezen.jhc.web.admin.dto.prod.MainCtgrDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdColorDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdColorListDTO;
@@ -60,7 +59,7 @@ public class AdminProdRegController {
 	}
 	
 	@PostMapping("/admin/prod/reg")
-	public String prodReg(ProdDTO prodDTO, @ModelAttribute(value="AttachImageListDTO") AttachImageListDTO imageList, @ModelAttribute(value="ProdColorListDTO") ProdColorListDTO prodColors, @ModelAttribute(value="ProdSizeListDTO") ProdSizeListDTO prodSizes, HttpServletRequest req, Model model) {
+	public String prodReg(ProdDTO prodDTO, AttachImageDTO image, @ModelAttribute(value="ProdColorListDTO") ProdColorListDTO prodColors, @ModelAttribute(value="ProdSizeListDTO") ProdSizeListDTO prodSizes, HttpServletRequest req, Model model) {
 		
 		log.info(prodDTO.getS_ctgr_num());
 		
@@ -73,7 +72,7 @@ public class AdminProdRegController {
 		StringBuilder p_explain = new StringBuilder(req.getParameter("prod_explain"));
 		StringBuilder p_info = new StringBuilder(req.getParameter("prod_info"));
 
-		int result = prService.regNewProd(prodDTO, imageList, prodColors, prodSizes, p_explain, p_info); 
+		int result = prService.regNewProd(prodDTO, image, prodColors, prodSizes, p_explain, p_info); 
 		
 		log.info(result);
 		

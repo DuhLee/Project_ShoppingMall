@@ -32,7 +32,7 @@
 				<a href="<%=request.getContextPath()%>/prodDetail?p_num=${prod.p_num}">
 				
 				<img
-					src="<%=request.getContextPath() %>/${prod.origin_img_path }" alt="" />
+					src="<%=request.getContextPath()%>/display/image?fileName=${prod.origin_img_path }" alt="" />
 				</a>
 				<!--상품명-->
 				<div class="product_name">${prod.p_name }</div>

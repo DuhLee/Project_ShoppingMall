@@ -30,62 +30,37 @@
 	                        <h3 class="mb-0 fw-bold mb-4">월매출현황</h3>
 	                        <button class="btn btn-dark btn-sm" style="height: 30px;" onclick="location.href='<%=request.getContextPath()%>/admin/sales/monthly'">더보기</button>
                       	</div>
-                        <canvas id="dash-monthly-amount-chart" style="width: 100%; height: 300px;"></canvas>
+                        <canvas id="dash-monthly-amount-chart" style="width: 100%; height: 340px;"></canvas>
                       </div>
                     </div>
                   </div>
-
+                  
                   <div class="col-lg-4">
-                    <div class="row g-0 border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                      <div class="col p-4 d-flex flex-column position-static">
-                        <div class="d-flex flex-row justify-content-between">
-                        	<h3 class="mb-0 fw-bold mb-4">신규주문</h3>
-                        	<button class="btn btn-dark btn-sm" style="height: 30px;" onclick="location.href='<%=request.getContextPath()%>/admin/order'">더보기</button>
-                      	</div>
-                        <table class="table">
-                          <thead>
-                              <tr>
-                                <th></th>
-                                <th>카테고리</th>
-                                <th>주문수</th>
-                              </tr>
-                           </thead>
-                          <tbody>
-                            <c:forEach items="${dailyMCtgrOrders}" var="dailyMCtgrOrder">
-                              <tr>
-                                <td>
-                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 1}">
-                                    <i class="fa-solid fa-shirt"></i>
-                                  </c:if>
-                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 2}">
-                                    <i class="fa-solid fa-mobile-screen-button"></i>
-                                  </c:if>
-                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 3}">
-                                    <i class="fa-solid fa-mug-saucer"></i>
-                                  </c:if>
-                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 4}">
-                                    <i class="fa-solid fa-image"></i>
-                                  </c:if>
-                                </td>
-                                <td>${dailyMCtgrOrder.m_ctgr_name}</td>
-                                <td>
-                                  <c:choose>
-                                    <c:when test="${dailyMCtgrOrder.sales eq 0}">
-                                      0
-                                    </c:when>
-                                    <c:otherwise>
-                                      ${dailyMCtgrOrder.sales}
-                                    </c:otherwise>
-                                  </c:choose>
-                                </td>
-                              </tr>
-                            </c:forEach>
-                          </tbody>
-                        </table>
+                      <div class="row g-0 border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                          <div class="d-flex flex-row justify-content-between">
+                        	<h3 class="mb-0 fw-bold mb-4">게시판 문의</h3>
+                        	<button class="btn btn-dark btn-sm" style="height: 30px;" onclick="location.href='<%=request.getContextPath()%>/admin/contact'">더보기</button>
+                      	  </div>
+                          <table class="table">
+                          	<thead>
+                          		<th>문의사항</th>
+                          		<th></th>
+                          	</thead>
+                            <tbody>
+                              <c:forEach items="${csCtgrs}" var="csCtgr">
+                                <tr>
+                                  <td class="fs-6">[${csCtgr.cs_ctgr_name}]</td>
+                                  <td>${csCtgr.count}</td>
+                                </tr>
+                              </c:forEach>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                 </div>
+
+                  
 
                   <div class="row">
                     <div class="col-lg-8">
@@ -142,30 +117,59 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-4">
-                      <div class="row g-0 border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <div class="col p-4 d-flex flex-column position-static">
-                          <div class="d-flex flex-row justify-content-between">
-                        	<h3 class="mb-0 fw-bold mb-4">게시판 문의</h3>
-                        	<button class="btn btn-dark btn-sm" style="height: 30px;" onclick="location.href='<%=request.getContextPath()%>/admin/contact'">더보기</button>
-                      	  </div>
-                          <table class="table">
-                          	<thead>
-                          		<th>문의사항</th>
-                          		<th></th>
-                          	</thead>
-                            <tbody>
-                              <c:forEach items="${csCtgrs}" var="csCtgr">
-                                <tr>
-                                  <td class="fs-6">[${csCtgr.cs_ctgr_name}]</td>
-                                  <td>${csCtgr.count}</td>
-                                </tr>
-                              </c:forEach>
-                            </tbody>
-                          </table>
-                        </div>
+
+				<div class="col-lg-4">
+                    <div class="row g-0 border rounded flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                      <div class="col p-4 d-flex flex-column position-static">
+                        <div class="d-flex flex-row justify-content-between">
+                        	<h3 class="mb-0 fw-bold mb-4">신규주문</h3>
+                        	<button class="btn btn-dark btn-sm" style="height: 30px;" onclick="location.href='<%=request.getContextPath()%>/admin/order'">더보기</button>
+                      	</div>
+                        <table class="table">
+                          <thead>
+                              <tr>
+                                <th></th>
+                                <th>카테고리</th>
+                                <th>주문수</th>
+                              </tr>
+                           </thead>
+                          <tbody>
+                            <c:forEach items="${dailyMCtgrOrders}" var="dailyMCtgrOrder">
+                              <tr>
+                                <td>
+                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 1}">
+                                    <i class="fa-solid fa-shirt"></i>
+                                  </c:if>
+                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 2}">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                  </c:if>
+                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 3}">
+                                    <i class="fa-solid fa-mug-saucer"></i>
+                                  </c:if>
+                                  <c:if test="${dailyMCtgrOrder.m_ctgr_num eq 4}">
+                                    <i class="fa-solid fa-image"></i>
+                                  </c:if>
+                                </td>
+                                <td>${dailyMCtgrOrder.m_ctgr_name}</td>
+                                <td>
+                                  <c:choose>
+                                    <c:when test="${dailyMCtgrOrder.sales eq 0}">
+                                      0
+                                    </c:when>
+                                    <c:otherwise>
+                                      ${dailyMCtgrOrder.sales}
+                                    </c:otherwise>
+                                  </c:choose>
+                                </td>
+                              </tr>
+                            </c:forEach>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
+                  </div>
+                 </div>
+                    
                   </div>
 
               </main>

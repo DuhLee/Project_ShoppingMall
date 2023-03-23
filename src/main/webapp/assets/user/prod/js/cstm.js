@@ -180,9 +180,13 @@ function setBackground() {
     // add the shape to the layer
     layer.add(background);
   };
+  
 
   if (!url) {
-    backgroundImg.src = colorName.dataset.imagepath;
+
+    var imagePath = '/display/image?fileName=' + colorName.dataset.imagepath;
+
+    backgroundImg.src = imagePath;
   } else {
     backgroundImg.src = url;
   }
@@ -203,8 +207,8 @@ window.onload = function () {
 
       // 색상 누르면 색상명 변경
       colorName.innerText = e.target.dataset.name;
-
-      url = e.target.dataset.imagepath;
+      var imagePath = e.target.dataset.imagepath;
+      url =  '/display/image?fileName=' + imagePath;
 
       background.remove();
       setBackground();

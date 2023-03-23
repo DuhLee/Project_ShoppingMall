@@ -12,7 +12,7 @@
 		FROM 
 			contact cs
 		INNER JOIN cs_ctgr csc ON csc.cs_ctgr_num = cs.cs_ctgr_num 
-		WHERE admin_reply IS NOT NULL
+		WHERE admin_reply IS NULL
 		GROUP BY 
 			cs_ctgr_name,
 			cs.cs_ctgr_num

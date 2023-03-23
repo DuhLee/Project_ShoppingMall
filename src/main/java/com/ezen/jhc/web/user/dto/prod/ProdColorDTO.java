@@ -11,6 +11,9 @@ public class ProdColorDTO {
 	String	pc_name;
 	String	pc_code;
 	String	pc_img_path;
+	String  pc_origin_img_path;
+	String  pc_lg_img_path;
+	String  pc_md_img_path;
 	Integer	p_num;
 
 }
