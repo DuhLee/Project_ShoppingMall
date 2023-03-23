@@ -28,27 +28,27 @@ public class ProdColorDTO {
 	
 	
 	public void setOrigin_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
-		String urlPath = pc_img_uploadpath + "\\" + pc_img_uuid + "_" + pc_img_filename;
+		String urlPath = pc_img_uploadpath + "/" + pc_img_uuid + "_" + pc_img_filename;
 		this.pc_origin_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 	
 	public void setThumb_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
 		
-		String urlPath = pc_img_uploadpath + "\\s_" + pc_img_uuid  + "_" + pc_img_filename;
+		String urlPath = pc_img_uploadpath + "/s_" + pc_img_uuid  + "_" + pc_img_filename;
 		this.pc_thumb_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 	public void setLg_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
-		String urlPath = pc_img_uploadpath + "\\lg_" + pc_img_uuid  + "_" + pc_img_filename;
+		String urlPath = pc_img_uploadpath + "/lg_" + pc_img_uuid  + "_" + pc_img_filename;
 		this.pc_lg_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 	
 	public void setMd_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
-		String urlPath = pc_img_uploadpath + "\\md_" + pc_img_uuid  + "_" + pc_img_filename;
+		String urlPath = pc_img_uploadpath + "/md_" + pc_img_uuid  + "_" + pc_img_filename;
 		this.pc_md_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 
 	public void setSm_img_path(String pc_img_uploadpath, String pc_img_uuid, String pc_img_filename) throws UnsupportedEncodingException {
-		String urlPath = pc_img_uploadpath + "\\sm_" + pc_img_uuid  + "_" + pc_img_filename;
+		String urlPath = pc_img_uploadpath + "/sm_" + pc_img_uuid  + "_" + pc_img_filename;
 		this.pc_sm_img_path = URLEncoder.encode(urlPath, "UTF-8");
 	}
 	
