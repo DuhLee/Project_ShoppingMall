@@ -758,6 +758,8 @@ for (i = 0; i < buttons.length; ++i) {
       loginBtn.click();
     } else if (ps_name != null) {
       // 로그인 되어 있고 사이즈를 선택했으면 버튼 상관없이 이미지 저장
+      rect.hide();
+      currentTr.hide();
       var cstm_img = stage.toDataURL().split(',')[1];
       fileName = 'cstm_img_' + mem_num + '_' + new Date().getMilliseconds() + '.png';
 
