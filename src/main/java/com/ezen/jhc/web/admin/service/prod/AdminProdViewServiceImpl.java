@@ -1,11 +1,13 @@
 package com.ezen.jhc.web.admin.service.prod;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.jhc.web.admin.dto.prod.ProdColorDTO;
+import com.ezen.jhc.web.admin.dto.prod.ProdColorListDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdSizeDTO;
 import com.ezen.jhc.web.admin.mapper.prod.ProdColorMapper;
@@ -86,5 +88,50 @@ public class AdminProdViewServiceImpl implements AdminProdViewService{
 	public List<ProdDTO> getSearchKeywordProds(String p_name) {
 		
 		return prodMapper.getSearchKeywordProds(p_name);
+	}
+	
+	@Override
+	public Integer modifyProd(ProdDTO prodDTO) {
+		
+		return prodMapper.modifyProd(prodDTO);
+	}
+	
+	@Override
+	public Integer modifyColors(ProdColorListDTO prodColors) {
+		
+		List<ProdColorDTO> pcList = prodColors.getProdColors();
+		for (int i = 0; i < pcList.size(); i++) {
+			
+			try {
+			pcList.get(i).setOrigin_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
+			pcList.get(i).setThumb_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
+			pcList.get(i).setLg_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
+			pcList.get(i).setMd_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
+			pcList.get(i).setSm_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		prodColors.setProdColors(pcList);
+		int result = 0;
+		prodColors.getProdColors().forEach(color -> {
+			
+			if (color.getPc_name() != null && color.getPc_name() != "") {
+				
+				color.setP_num(prodDTO.getP_num());
+				prodColorMapper.modifyColor(color);
+			}
+		});
+		
+		
+		
+		return result;
+	}
+	
+	@Override
+	public Integer modifySizes(ProdSizeDTO sizes) {
+		
+		return prodSizeMapper.modifySizes(sizes);
 	}
 }

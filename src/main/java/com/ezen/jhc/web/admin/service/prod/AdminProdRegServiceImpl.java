@@ -54,7 +54,7 @@ public class AdminProdRegServiceImpl implements AdminProdRegService {
 	public Integer regNewProd(ProdDTO prodDTO, AttachImageDTO image, ProdColorListDTO prodColors,
 			ProdSizeListDTO prodSizes, StringBuilder p_explain, StringBuilder p_info) {
 
-		
+	
 			try {
 				image.setOrigin_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
 				image.setThumb_img_path(image.getUploadPath(), image.getUuid(), image.getFileName());
@@ -70,9 +70,6 @@ public class AdminProdRegServiceImpl implements AdminProdRegService {
 			
 		List<ProdColorDTO> pcList = prodColors.getProdColors();
 		for (int i = 0; i < pcList.size(); i++) {
-			if (pcList.get(i).getPc_code() == null && pcList.get(i).getPc_name() == null) {
-				pcList.remove(i);
-			}
 			
 			try {
 			pcList.get(i).setOrigin_img_path(pcList.get(i).getPc_img_uploadpath(), pcList.get(i).getPc_img_uuid(), pcList.get(i).getPc_img_filename());
@@ -105,15 +102,21 @@ public class AdminProdRegServiceImpl implements AdminProdRegService {
 			log.info(prodRegMapper.regProdImage(image));
 
 		prodColors.getProdColors().forEach(color -> {
-
-			color.setP_num(prodDTO.getP_num());
-			log.info(prodRegMapper.regProdColors(color));
+			
+			if (color.getPc_name() != null && color.getPc_name() != "") {
+				
+				color.setP_num(prodDTO.getP_num());
+				log.info(prodRegMapper.regProdColors(color));
+			}
 		});
 
 		prodSizes.getProdSizes().forEach(size -> {
+			
+			if (size.getPs_name() != null && size.getPs_name() != "") {
+				size.setP_num(prodDTO.getP_num());				
+				log.info(prodRegMapper.regProdSizes(size));
+			}
 
-			size.setP_num(prodDTO.getP_num());
-			log.info(prodRegMapper.regProdSizes(size));
 		});
 		
 		int resultProdDetails = prodRegMapper.regProdDetails(prodDTO.getP_num());

@@ -53,5 +53,18 @@
 	<delete id="deleteProdImage">
 		DELETE FROM prod_images WHERE p_num = #{p_num}
 	</delete>
+	
+	<update id="modifyProd">
+		UPDATE
+			prods 
+		SET
+			p_name = #{p_name},
+			p_price = #{p_price},
+			p_explain_path = #{p_explain_path},
+			p_info_path = #{p_info_path},
+			s_ctgr_num = #{s_ctgr_num}
+		WHERE
+			p_num = #{p_num}
+	</update>
 
 </mapper>

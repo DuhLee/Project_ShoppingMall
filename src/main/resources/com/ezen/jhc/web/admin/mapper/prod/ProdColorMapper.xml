@@ -7,5 +7,22 @@
 	<select id="getProdColors" resultType="com.ezen.jhc.web.admin.dto.prod.ProdColorDTO">
 		SELECT * FROM prod_colors WHERE p_num = #{p_num}
 	</select>
+	
+	<update id="modifyColor">
+		UPDATE
+			prod_colors
+		SET
+			pc_name = #{pc_name},
+			pc_code = #{pc_code},
+			pc_img_path = #{pc_img_path},
+			pc_img_uploadpath = #{pc_img_uploadpath},
+			pc_img_uuid = #{pc_img_filename},
+			pc_origin_img_path = #{pc_thumb_img_path},
+			pc_lg_img_path = #{pc_lg_img_path},
+			pc_md_img_path = #{pc_md_img_path},
+			pc_sm_img_path = #{pc_sm_img_path}
+		WHERE
+			pc_num = #{pc_num}
+	</update>
 
 </mapper>

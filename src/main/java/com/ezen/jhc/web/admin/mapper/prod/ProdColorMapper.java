@@ -10,4 +10,6 @@ import com.ezen.jhc.web.admin.dto.prod.ProdColorDTO;
 public interface ProdColorMapper {
 	
 	public List<ProdColorDTO> getProdColors(Integer p_num);
+	
+	Integer modifyColor(ProdColorDTO colors);
 }

@@ -31,7 +31,7 @@
                                             <button class="btn btn-sm btn-primary" onclick="location.href='../view'" style="height: 30px;">뒤로가기</button>
                                           </div>
                           
-                                          <form class="row" method="POST">
+                                          <form class="row" method="POST" action="<%=request.getContextPath()%>/admin/prod/modify">
                                           
                                             <div class="col-md-6 mb-3">
                                               <label for="main_category" class="form-label">메인 카테고리</label> <select id="main-category"
@@ -56,7 +56,7 @@
                           
                                             <div class="col-md-6 mb-3">
                                               <label for="sub-category" class="form-label">서브 카테고리</label> <select id="sub-category"
-                                                name="sub-category" class="form-select">
+                                                name="s_ctgr_num" class="form-select">
                                                 <option>서브 카테고리</option>
                                                 <c:forEach items="${prodSubCtgrs}" var="sCtgr">
                           
@@ -74,11 +74,11 @@
                           
                                             <div class="col-md-6 mb-3">
                                               <label for="p_name" class="form-label">제품명</label> <input type="text" class="form-control"
-                                                id="p_name" placeholder="제품명을 입력하세요" value="${prod.p_name}">
+                                                id="p_name" placeholder="제품명을 입력하세요" value="${prod.p_name}" name="p_name">
                                             </div>
                                             <div class="col-md-6">
                                               <label for="p_price" class="form-label">가격</label> <input type="text" class="form-control"
-                                                id="p_price" placeholder="가격을 입력하세요" value="${prod.p_price}">
+                                                id="p_price" placeholder="가격을 입력하세요" value="${prod.p_price}" name="p_price">
                                             </div>
                                           
                                             <div class="col-lg-12 d-flex flex-row justify-content-between mb-3">
@@ -93,7 +93,7 @@
                                                       <th></th>
                                                       <th></th>
                                                     </tr>
-                                                  </thead>
+                                                  </thead> 
                                                   <tbody id="prod-view-color-table-body">
                                                     <c:set var="index" value="${prodColors.size()}" />
                                                     <c:forEach items="${prodColors}" var="prodColor" varStatus="indexStatus">
@@ -103,9 +103,9 @@
                                                         <td><input type="color" class="form-control"
                                                             name="prodColors[${indexStatus.index}].pc_code" value="${prodColor.pc_code}"></td>
                                                         <td><input type="file" class="form-control"
-                                                            name="prodColors[${indexStatus.index}].pc_img_path"
-                                                            value="${prodColor.pc_img_filename}"></td>
-                                                        <td>
+                                                            name="prodColors[${indexStatus.index}].pc_img_filename" id="color-filename${indexStatus.index}"
+                                                            value="${prodColor.pc_img_filename}" onchange="inputColorImg(event)"></td>
+														<td>
                                                           <div id="prodColors[${indexStatus.index}]-uploadImg" class="pc-upload-result">
                                                             <div id="${prodColor.pc_img_filename}-div" class="upload-prod-img">
                                                               <img
@@ -113,31 +113,14 @@
                                                               <button type="button" id="${prodColor.pc_img_filename}-btn"
                                                                 class="upload-img-delete-btn btn btn-minus fa-solid fa-circle-minus btn-danger"
                                                                 data-file="${prodColor.pc_thumb_img_path}" onclick="deleteFile(event)"></button>
-                                                              <input type="hidden" name="imageList[${indexStatus.index}].fileName"
+                                                              <input type="hidden" name="prodColors[${indexStatus.index}].fileName"
                                                                 value="${prodColor.pc_img_filename}'">
-                                                              <input type="hidden" name="imageList[${indexStatus.index}].uuid"
+                                                              <input type="hidden" name="prodColors[${indexStatus.index}].uuid"
                                                                 value="${prodColor.pc_img_uuid}">
-                                                              <input type="hidden" name="imageList[${indexStatus.index}].uploadPath"
+                                                              <input type="hidden" name="prodColors[${indexStatus.index}].uploadPath"
                                                                 value="${prodColor.pc_img_uploadpath}">
                                                             </div>
                                                           </div>
-                                                        </td>
-                                                        <td>
-                                                          <c:choose>
-                                                            <c:when test="${prodColors.size()-1 eq indexStatus.index}">
-                                                              <button type="button" class="btn btn-plus fa-solid fa-circle-plus btn-primary"
-                                                                onclick="addColorBtn_view(event)"></button>
-                                                              <button type="button" class="btn btn-minus fa-solid fa-circle-minus btn-danger"
-                                                                style='display: none;' onclick="removeColorBtn_view(event)"></button>
-                                                            </c:when>
-                                                            <c:otherwise>
-                          
-                                                              <button type="button" class="btn btn-plus fa-solid fa-circle-plus btn-primary"
-                                                                style='display: none;' onclick="addColorBtn_view(event)"></button>
-                                                              <button type="button" class="btn btn-minus fa-solid fa-circle-minus btn-danger"
-                                                                onclick="removeColorBtn_view(event)"></button>
-                                                            </c:otherwise>
-                                                          </c:choose>
                                                         </td>
                                                       </tr>
                                                     </c:forEach>
@@ -156,28 +139,12 @@
                                                   <tbody id="prod-view-size-table-body">
                           
                                                     <c:forEach items="${prodSizes}" var="prodSize" varStatus="indexStatus">
-                                                      <tr id="prodSize[${indexStatus.index}]">
-                                                        <td><input type="text" class="form-control" name="prodSize[${indexStatus.index}].ps_name}"
-                                                            value="${prodSize.ps_name}"></td>
-                                                        <td>
-                                                          <c:choose>
-                          
-                                                            <c:when test="${prodSizes.size()-1 eq indexStatus.index}">
-                                                              <button type="button" class="btn btn-plus fa-solid fa-circle-plus btn-primary"
-                                                                onclick="addSizeBtn_view(event)"></button>
-                                                              <button type="button" class="btn btn-minus fa-solid fa-circle-minus btn-danger"
-                                                                style='display: none;' onclick="removeSizeBtn_view(event)"></button>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                              <button type="button" class="btn btn-plus fa-solid fa-circle-plus btn-primary"
-                                                                style='display: none;' onclick="addSizeBtn_view(event)"></button>
-                                                              <button type="button" class="btn btn-minus fa-solid fa-circle-minus btn-danger"
-                                                                onclick="removeSizeBtn_view(event)"></button>
-                                                            </c:otherwise>
-                                                          </c:choose>
+                                                      <tr id="prodSizes[${indexStatus.index}]">
+                                                        <td><input type="text" class="form-control" name="prodSizes[${indexStatus.index}].ps_name}"
+                                                            value="${prodSize.ps_name}">
+                                                            <input type="hidden" name="prodSize[${indexStatus.index}].ps_num" value="${prodSize.ps_num}">
                                                         </td>
                                                       </tr>
-                          
                                                     </c:forEach>
                                                   </tbody>
                                                 </table>
@@ -195,7 +162,7 @@
                                                     <div class="summernote-container col-md-6 d-flex flex-column">
                                                       <!-- 브랜드 스토리 -->
                                                       <label for="prod_explain_editor">브랜드 설명</label>
-                                                      <textarea class="summernote" id="prod_explain_editor" name="prod_explain">
+                                                      <textarea class="summernote" id="prod_explain_editor" name="p_explain_path">
                                     
                                                           <%@ include file="../include/prod_explain.jsp"%>
                                                           
@@ -207,7 +174,7 @@
                                     
                                     
                                                       <!-- 제품 상세 정보 -->
-                                                      <textarea class="summernote" id="prod_info_editor" name="prod_info">
+                                                      <textarea class="summernote" id="prod_info_editor" name="p_info_path">
                                     
                                                           <%@ include file="../include/prod_info.jsp"%>
                                                           
@@ -215,19 +182,20 @@
                                                     </div>
                                     
                                                     <div class="col-md-12 d-flex justify-content-end">
-                                                      <input type="submit" id='prod-reg-btn' class="btn btn-sm btn-primary mt-2" form="prod-reg-form" value="수정">
+                                                    	<input type="hidden" value="${prod.p_num}" name="p_num">
+                                                      <button type="submit" id='prod-reg-btn' class="btn btn-sm btn-primary mt-2">수정</button>
                                                     </div>
-                                                    </form>
+                                                    
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
-                                          </form>
                           
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+								</form>
 
                             </main>
 

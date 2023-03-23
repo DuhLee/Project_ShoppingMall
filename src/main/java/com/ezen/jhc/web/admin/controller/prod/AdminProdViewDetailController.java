@@ -6,15 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ezen.jhc.web.admin.dto.prod.MainCtgrDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdColorDTO;
+import com.ezen.jhc.web.admin.dto.prod.ProdColorListDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdDTO;
 import com.ezen.jhc.web.admin.dto.prod.ProdSizeDTO;
+import com.ezen.jhc.web.admin.dto.prod.ProdSizeListDTO;
 import com.ezen.jhc.web.admin.dto.prod.SubCtgrDTO;
 import com.ezen.jhc.web.admin.service.prod.AdminProdRegServiceImpl;
 import com.ezen.jhc.web.admin.service.prod.AdminProdViewServiceImpl;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Controller
 public class AdminProdViewDetailController {
 	
@@ -66,5 +73,25 @@ public class AdminProdViewDetailController {
 		model.addAttribute("prodSizes", prodSizes);
 		
 		return "admin/prod/admin_prod_view_detail";
+	}
+	
+	@PostMapping("/admin/prod/modify")
+	public String prodModify(ProdDTO prodDTO, @ModelAttribute(value="ProdColorListDTO") ProdColorListDTO prodColors, @ModelAttribute(value="ProdSizeListDTO") ProdSizeListDTO prodSizes, Model model) {
+		
+		System.out.println(prodDTO);
+		
+		
+		int result = adminProdViewService.modifyProd(prodDTO);
+			
+		int pcResult = adminProdViewService.modifyColors(prodColors);
+		
+		System.out.println(prodSizes);
+		
+		for (ProdSizeDTO size : prodSizes.getProdSizes()) {
+			int psResult = adminProdViewService.modifySizes(size);
+		}
+		log.info("수정 결과: " + result);		
+		
+		return "redirect:/admin/prod/view";
 	}
 }

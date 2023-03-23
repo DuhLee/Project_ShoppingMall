@@ -10,4 +10,6 @@ import com.ezen.jhc.web.admin.dto.prod.ProdSizeDTO;
 public interface ProdSizeMapper {
 
 	public List<ProdSizeDTO> getProdSizes(Integer p_num);
+	
+	Integer modifySizes(ProdSizeDTO size);
 }

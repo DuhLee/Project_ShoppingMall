@@ -21,5 +21,7 @@ public interface ProdMapper {
 	Integer deleteProd(Integer p_num);
 	
 	Integer deleteProdImage(Integer p_num);
+	
+	Integer modifyProd(ProdDTO prodDTO);
 
 }

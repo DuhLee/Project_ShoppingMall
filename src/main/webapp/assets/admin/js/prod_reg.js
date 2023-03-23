@@ -91,7 +91,10 @@ function removeColorBtn(evt) {
     console.log(removeTarget);
     var row = document.getElementById(removeTarget.id);
 
-    colorTable.deleteRow((row.rowIndex - 1));
+    console.log(removeTarget);
+    console.log(removeTarget.id);
+
+    colorTable.deleteRow((row.rowIndex));
 }
 
 //사이즈 추가/제거 버튼
@@ -128,7 +131,7 @@ function removeSizeBtn(evt) {
     console.log(removeTarget);
     var row = document.getElementById(removeTarget.id);
 
-    sizeTable.deleteRow((row.rowIndex - 1));
+    sizeTable.deleteRow((row.rowIndex));
 }
 
 function openForm(){
