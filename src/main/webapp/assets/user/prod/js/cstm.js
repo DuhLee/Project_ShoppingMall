@@ -23,14 +23,6 @@ fileInput.onchange = (e) => {
 }
 
 
-// add 버튼 누르면 새로운 텍스트 생성
-const textAddBtn = document.getElementById('textIcon');
-textAddBtn.addEventListener('click', (e) => {
-  addText();
-});
-
-
-
 var width = container.clientWidth;
 var height = container.clientHeight;
 
@@ -722,16 +714,9 @@ for (i = 0; i < fontFamilyComboBox.length; ++i) {
 
 
 // sampleIconPopUp 설정
-const sampleIconBtn = document.getElementById('sampleIcon');
 const closeBtn = document.getElementById('sampleIconPopUpCloseBtn');
 const hidden = document.getElementById('sampleIconPopUpBackground');
 const body = document.getElementsByTagName('body')[0];
-
-
-sampleIconBtn.addEventListener('click', (e) => {
-  hidden.style.display = 'initial';
-  body.classList.add('scrollLock');
-});
 
 closeBtn.addEventListener('click', (e) => {
   hidden.style.display = 'none';
@@ -777,6 +762,8 @@ for (i = 0; i < buttons.length; ++i) {
       loginBtn.click();
     } else if (ps_name != null) {
       // 로그인 되어 있고 사이즈를 선택했으면 버튼 상관없이 이미지 저장
+      rect.hide();
+      currentTr.hide();
       var cstm_img = stage.toDataURL().split(',')[1];
       fileName = 'cstm_img_' + mem_num + '_' + new Date().getMilliseconds() + '.png';
 
@@ -936,6 +923,13 @@ for (i = 0; i < loginCheck.length; ++i) {
       document.getElementById('imageIcon').setAttribute('for', null);
       e.stopImmediatePropagation();
       loginBtn.click();
+    } else if (e.target.parentElement.id == 'textIcon') {
+      addText();
+    } else if (e.target.parentElement.id == 'sampleIcon') {
+      hidden.style.display = 'initial';
+      body.classList.add('scrollLock');
+    } else if (e.target.parentElement.id == 'imageIcon') {
+      document.getElementById('imageIcon').setAttribute('for', 'fileInput');
     }
   });
 }

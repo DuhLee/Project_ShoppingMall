@@ -18,7 +18,7 @@
 	<!--canvas-->
 		<div id="main_canvas_container">
 			<div id="menuBar">
-				<label id="imageIcon" for="fileInput"> <span
+				<label id="imageIcon" for=""> <span
 					class="material-symbols-outlined loginCheck">imagesmode</span> <br /> 이미지 업로드
 					<input type="file" multiple="multiple" id="fileInput"
 					accept="image/*">
