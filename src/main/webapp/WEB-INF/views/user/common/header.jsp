@@ -59,7 +59,7 @@
 			</div>
 
 			<div class="header_container_bottom_contents">
-				<c:forEach items="${mainCtgrs}" var="mainCtgr">
+				<c:forEach items="${sessionScope.mainCtgrs}" var="mainCtgr">
 					<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=${mainCtgr.m_ctgr_num}">${mainCtgr.m_ctgr_name}</a>				
 				</c:forEach>
 			</div>

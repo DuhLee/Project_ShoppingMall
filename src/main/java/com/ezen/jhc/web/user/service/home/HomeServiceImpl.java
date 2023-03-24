@@ -2,6 +2,8 @@ package com.ezen.jhc.web.user.service.home;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -16,10 +18,10 @@ public class HomeServiceImpl implements HomeService {
 	HomeMapper homeMapper;
 	
 	@Override
-	public void getMainCtgrs(Model model) {
+	public void getMainCtgrs(HttpSession session) {
 		List<MainCtgrDTO> list = homeMapper.getMainCtgrs();
 		
-		model.addAttribute("mainCtgrs", list);
+		session.setAttribute("mainCtgrs", list);
 	}
 
 }

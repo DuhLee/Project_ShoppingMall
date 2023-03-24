@@ -61,7 +61,7 @@
 	<!-- category icon -->
 	<div id="home_cate_icon_container" class="h_container">
 		<div id="home_cate_icon_box">
-			<c:forEach items="${mainCtgrs}" var="mainCtgr">
+			<c:forEach items="${sessionScope.mainCtgrs}" var="mainCtgr">
 				<div class="home_cate_item">
 					<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=${mainCtgr.m_ctgr_num}">
 						<div class="home_cate_img" style="background-color: ${mainCtgr.m_ctgr_color_code}">

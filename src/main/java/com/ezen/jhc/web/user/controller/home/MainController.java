@@ -53,9 +53,9 @@ public class MainController {
 	}
 
 	// 메인 화면 (전체 리뷰 리스트)
-	@RequestMapping(value ="/main", method = RequestMethod.GET)
-		public String main(Model model) {
-		homeService.getMainCtgrs(model);
+	@RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
+		public String main(HttpSession session, Model model) {
+		homeService.getMainCtgrs(session);
 		
 		List<ReviewDTO> review_list = home_mapper.get_review_list();
 		List<ReviewDTO> count = home_mapper.get_all_reviews();
