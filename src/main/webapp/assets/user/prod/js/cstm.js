@@ -727,10 +727,12 @@ closeBtn.addEventListener('click', (e) => {
 const sampleIcons = document.getElementById('sampleIcons');
 
 // DB에서 가져온 샘플 아이콘 수만큼 for문 돌려야함
-for (i = 1; i < 33; ++i) {
-  // 경로 지정되면 변경
-  // 관리자 페이지에서 아이콘은 png로 등록
-  sampleIcons.innerHTML += `<img class="sampleIconList" id="sampleIcon${i}" src="/assets/common/cstm_img/sampleIcons/${i}.png" />`;
+for (i = 0; i < 5; ++i) {
+  for (j = 1; j < 10; ++j) {
+    // 경로 지정되면 변경
+    // 관리자 페이지에서 아이콘은 png로 등록
+    sampleIcons.innerHTML += `<img class="sampleIconList" id="sampleIcon${j}" src="/assets/common/cstm_img/sampleIcons/${j}.png" />`;
+  }
 }
 
 const sampleIconList = document.getElementsByClassName('sampleIconList');
