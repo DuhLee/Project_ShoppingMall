@@ -6,6 +6,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/user/home/css/home_main.css?after">
 
+<title>juhee custom - main</title>
 
 <!-- main -->
 <div id="home_main">
