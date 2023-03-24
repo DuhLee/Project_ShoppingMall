@@ -31,6 +31,10 @@ public class ContactController_mp {
 		// 세션 가져오기
 		HttpSession session = request.getSession();
 		
+		if (session.getAttribute("member") == null) {
+			return "user/common/loginPlease";
+		}
+		
 		// mem_num
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
 		Integer mem_num = member.getMem_num();
