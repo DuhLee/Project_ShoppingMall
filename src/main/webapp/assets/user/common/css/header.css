@@ -82,8 +82,8 @@ div[class^="header_container"] {
 }
 
 .header_container_bottom div:nth-child(2) {
-   width: 300px;
-   margin: 0px 11%;
+   width: 700px;
+   margin: 0;
 }
 
 .header_container_bottom div:nth-child(3)>button {

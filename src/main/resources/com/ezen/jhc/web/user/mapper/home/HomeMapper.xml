@@ -45,5 +45,8 @@
 		ORDER BY review_num DESC
 	</select>
 	
+	<select id="getMainCtgrs" resultType="com.ezen.jhc.web.user.dto.prod.MainCtgrDTO">
+		SELECT * FROM main_ctgr ORDER BY m_ctgr_num
+	</select>
 	
 </mapper>

@@ -59,10 +59,9 @@
 			</div>
 
 			<div class="header_container_bottom_contents">
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=1">의류</a>
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=2">폰케이스/테크</a>
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=3">홈데코/리빙</a>
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=4">액자</a>
+				<c:forEach items="${mainCtgrs}" var="mainCtgr">
+					<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=${mainCtgr.m_ctgr_num}">${mainCtgr.m_ctgr_name}</a>				
+				</c:forEach>
 			</div>
 		<c:set var="member" value="${sessionScope.member }"/>
 		

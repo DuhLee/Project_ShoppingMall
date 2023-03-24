@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.jhc.web.user.dto.review.ReviewDTO;
 import com.ezen.jhc.web.user.mapper.home.HomeMapper;
+import com.ezen.jhc.web.user.service.home.HomeServiceImpl;
 
 
 /**@author JIEUN
@@ -28,6 +29,9 @@ import com.ezen.jhc.web.user.mapper.home.HomeMapper;
 public class MainController {
 	@Autowired
 	HomeMapper home_mapper;
+	
+	@Autowired
+	HomeServiceImpl homeService;
 
 	// js에서 로그인 상태 확인해 로그인/로그아웃 표시
 	@ResponseBody
@@ -50,17 +54,17 @@ public class MainController {
 
 	// 메인 화면 (전체 리뷰 리스트)
 	@RequestMapping(value ="/main", method = RequestMethod.GET)
-	   public String main(Model model) {
-	      
-	      List<ReviewDTO> review_list = home_mapper.get_review_list();
-	      List<ReviewDTO> count = home_mapper.get_all_reviews();
-	      
-	      model.addAttribute("review_list", review_list);
-	      model.addAttribute("review_size", count.size());
-	   
-	      
-	      return "user/home/main";
-	   }
+		public String main(Model model) {
+		homeService.getMainCtgrs(model);
+		
+		List<ReviewDTO> review_list = home_mapper.get_review_list();
+		List<ReviewDTO> count = home_mapper.get_all_reviews();
+		
+		model.addAttribute("review_list", review_list);
+		model.addAttribute("review_size", count.size());
+		
+		return "user/home/main";
+	}
 	   
 	
 	   //리뷰 조회 페이지

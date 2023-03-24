@@ -60,46 +60,17 @@
 	
 	<!-- category icon -->
 	<div id="home_cate_icon_container" class="h_container">
-		<div id="home_cate_icon_box" style="width:700px;">
-			<div class="home_cate_item">
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=1" class="cate_img_01">
-					<div class="home_cate_img">
-						<img
-							src="<%=request.getContextPath()%>/assets/user/home/img/cate_icon/의류.png" />
-					</div>
-					<p class="home_cate_name">의류</p>
-				</a>
-			</div>
-
-			<div class="home_cate_item">
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=2" class="cate_img_02">
-					<div class="home_cate_img">
-						<img
-							src="<%=request.getContextPath()%>/assets/user/home/img/cate_icon/폰케이스.png" />
-					</div>
-					<p class="home_cate_name">폰케이스/테크</p>
-				</a>
-			</div>
-
-			<div class="home_cate_item ">
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=3" class="cate_img_03">
-					<div class="home_cate_img">
-						<img
-							src="<%=request.getContextPath()%>/assets/user/home/img/cate_icon/홈데코.png" />
-					</div>
-					<p class="home_cate_name">홈데코/리빙</p>
-				</a>
-			</div>
-
-			<div class="home_cate_item">
-				<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=4" class="cate_img_04">
-					<div class="home_cate_img">
-						<img
-							src="<%=request.getContextPath()%>/assets/user/home/img/cate_icon/액자.png" />
-					</div>
-					<p class="home_cate_name">잡화</p>
-				</a>
-			</div>
+		<div id="home_cate_icon_box">
+			<c:forEach items="${mainCtgrs}" var="mainCtgr">
+				<div class="home_cate_item">
+					<a href="<%=request.getContextPath()%>/main_category?m_ctgr_num=${mainCtgr.m_ctgr_num}">
+						<div class="home_cate_img" style="background-color: ${mainCtgr.m_ctgr_color_code}">
+							<img src="<%=request.getContextPath()%>/${mainCtgr.m_ctgr_icon_path}" />
+						</div>
+						<p class="home_cate_name">${mainCtgr.m_ctgr_name}</p>
+					</a>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 
