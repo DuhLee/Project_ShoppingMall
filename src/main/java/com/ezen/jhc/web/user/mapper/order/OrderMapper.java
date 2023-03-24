@@ -13,7 +13,7 @@ import com.ezen.jhc.web.user.dto.order.OrderDetailDTO;
 public interface OrderMapper {
 
 	// 전체 조회
-	@Select("SELECT t.status_name, t.ord_date, t.p_num, t.ord_num, t.p_name, t.origin_img_path, t.od_quantity, t.od_amount, t.total_amount, t.ord_status FROM (SELECT os.status_name, ord.ord_date, ord.total_amount, p.p_num, ord.ord_num, p.p_name, pi.origin_img_path, od.od_quantity, od.od_amount, ord.ord_status, ROW_NUMBER() OVER (PARTITION BY ord.ord_num ORDER BY ord.ord_date DESC, ord.ord_num DESC) as rn FROM order_statuses os, order_details od, orders ord, prod_images pi, prods p, prod_details pd WHERE pd.pd_num = od.pd_num AND p.p_num = pd.p_num AND pi.p_num = p.p_num AND od.ord_num = ord.ord_num AND ord.ord_status = os.ord_status AND ord.mem_num = #{mem_num}) t WHERE t.rn = 1")
+	@Select("SELECT t.status_name, t.ord_date, t.p_num, t.ord_num, t.p_name, t.origin_img_path, (SELECT SUM(od_quantity) FROM order_details ood WHERE ood.ord_num = t.ord_num) AS od_quantity, t.od_amount, t.total_amount, t.ord_status FROM (SELECT os.status_name, ord.ord_date, ord.total_amount, p.p_num, ord.ord_num, p.p_name, pi.origin_img_path, od.od_quantity, od.od_amount, ord.ord_status, ROW_NUMBER() OVER (PARTITION BY ord.ord_num ORDER BY ord.ord_date DESC, ord.ord_num DESC) as rn FROM order_statuses os, order_details od, orders ord, prod_images pi, prods p, prod_details pd WHERE pd.pd_num = od.pd_num AND p.p_num = pd.p_num AND pi.p_num = p.p_num AND od.ord_num = ord.ord_num AND ord.ord_status = os.ord_status AND ord.mem_num = #{mem_num}) t WHERE t.rn = 1")
 	public List<OrderDTO> selectOrderHistory(@Param("mem_num") Integer mem_num);
 
 	// 상태 & 날짜별 조회

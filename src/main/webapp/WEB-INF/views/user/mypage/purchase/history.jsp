@@ -53,12 +53,11 @@
 				<c:if test="${not empty orders }">
 					<table class="pd_info">
 						<colgroup>
-							<col style="width: 200px;">
-							<col style="width: 100px;">
-							<col style="width: 300px;">
-							<col style="width: 120px;">
-							<col style="width: 140px;">
-							<col style="width: 130px;">
+							<col style="width: 225px;">
+							<col style="width: 125px;">
+							<col style="width: 325px;">
+							<col style="width: 145px;">
+							<col style="width: 165px;">
 						</colgroup>
 						<thead>
 							<tr>
@@ -68,7 +67,6 @@
 								<th>상품정보</th>
 								<th>결제 금액</th>
 								<th>주문처리상태</th>
-								<th>취소/교환/반품</th>
 							</tr>
 						</thead>
 						<c:forEach var="order" items="${orders }">
@@ -87,26 +85,16 @@
 											pattern="#,###,##0" /></td>
 									<c:if test="${order.status_name eq '입금 전' || order.status_name eq '결제 완료' }">
 										<td>${order.status_name }</td>
-										<td><a href="">취소</a>
 									</c:if>
 									<c:if test="${order.status_name eq '주문 취소' || order.status_name eq '교환' || order.status_name eq '반품'}">
 										<td style="color: red">${order.status_name }</td>
-										<td class="unable_refund"><a href="">취소</a><br> <a
-											href="#">교환/반품</a></td>
 									</c:if>
 									<c:if test="${order.status_name eq  '배송 준비 중' || order.status_name eq '배송 중'}">
 										<td>${order.status_name }</td>
-										<td class="unable_refund"><a href="">취소</a><br> <a
-											href="#">교환/반품</a></td>
 									</c:if>
 									<c:if test="${order.status_name ne '주문 취소' && order.status_name ne '교환' && order.status_name ne '반품' && order.status_name ne '입금 전' && order.status_name ne '결제 완료' && order.status_name ne '배송 준비 중' && order.status_name ne '배송 중' && order.status_name eq  '배송 완료'}">
 										<td>${order.status_name }</td>
-										<td>
-											<a href="#">취소</a><br> 
-											<a href="<%=request.getContextPath() %>/order/er?ord_num=${order.ord_num }">교환/반품</a>
-										</td>
 									</c:if>
-
 								</tr>
 							</tbody>
 						</c:forEach>

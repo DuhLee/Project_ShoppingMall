@@ -139,7 +139,7 @@ window.onload = () => {
 		totalPriceOnlyNumber += parseInt(p_price[i].innerText.replaceAll(',', '').substring(0, p_price[i].innerText.length));
 	}
 	total_amount.innerText = totalPriceOnlyNumber.toLocaleString('ko-KR') + '원';
-	total_price.innerText = (totalPriceOnlyNumber - parseInt(shipping_price.innerText.replaceAll(',', '').substring(0, shipping_price.innerText.length))).toLocaleString('ko-KR') + '원';
+	total_price.innerText = (totalPriceOnlyNumber + parseInt(shipping_price.innerText.replaceAll(',', '').substring(0, shipping_price.innerText.length))).toLocaleString('ko-KR') + '원';
 	total_price2.innerText = total_price.innerText;
 
 
