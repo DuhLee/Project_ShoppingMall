@@ -74,7 +74,7 @@
 								<tr class="product">
 									<td>${order.new_ord_date }<br> <a
 										href="<%=request.getContextPath()%>/details?ord_num=${order.ord_num }">[${order.new_order_num }]</a></td>
-									<td><img width=70px; src="<%=request.getContextPath() %>/${order.origin_img_path }"
+									<td><img width=70px; src="<%=request.getContextPath()%>/display/image?fileName=${order.origin_img_path }"
 										alt="" /></td>
 									<td>${order.p_name }
 										<c:if test="${order.od_quantity ne 1}">

@@ -160,7 +160,7 @@
 
                                             <td class="thumb">                                              
 
-                                               <img id="pd_img" src="${od.origin_img_path }" alt="상품 사진">                      
+                                               <img id="pd_img" src="<%=request.getContextPath()%>/display/image?fileName=${od.origin_img_path }" alt="상품 사진">                      
                                                
                                             </td>
                                             <td class="product_info">
