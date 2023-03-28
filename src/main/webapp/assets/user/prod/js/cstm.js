@@ -130,6 +130,11 @@ stage.on('dragend', function (e) {
   }
 });
 
+window.onload = () => {
+  var rectColor = getLuma(e.target.id) > 150 ? 'black' : 'white';
+  rect.stroke(rectColor);
+  
+}
 
 // 배경 사각형 생성 및 추가
 const rect = new Konva.Rect({
