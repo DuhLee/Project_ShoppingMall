@@ -122,9 +122,8 @@
                                                                                 <input type="hidden" name="ord_status"
                                                                                     value="${order.ord_status}">
                                                                                 <td>
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-sm btn-outline-success fs-6 fw-bold"
-                                                                                        formaction="/admin/order/recieved">접수</button>
+                                                                                    <button type="button" id="recieved" onclick="delivery_form(${order.ord_num})"
+                                                                                        class="btn btn-sm btn-outline-success fs-6 fw-bold">접수</button>
                                                                                     /
                                                                                     <button type="submit"
                                                                                         class="btn btn-sm btn-outline-danger fs-6 fw-bold"

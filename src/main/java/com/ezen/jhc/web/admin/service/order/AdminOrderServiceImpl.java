@@ -58,6 +58,12 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	}
 	
 	@Override
+	public Integer deliveryOrder(Integer ord_num, String delivery_company, String invoice_number) {
+		
+		return orderMapper.updateDelivery(ord_num, delivery_company, invoice_number);
+	}
+	
+	@Override
 	public Integer recievedOrder(OrderDTO ordDTO) {
 		
 		ord = ordDTO;

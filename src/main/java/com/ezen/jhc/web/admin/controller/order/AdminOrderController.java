@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,6 +79,27 @@ public class AdminOrderController {
 		
 		return "admin/order/admin_order";
 	}
+	
+	@GetMapping("/order/delivery")
+	public String deliveryForm(Integer order_num) {
+		
+		return "admin/order/admin_delivery";
+	}
+	
+	@GetMapping("/order/delivery_reg")
+	public String deliveryReg(Integer ord_num, String delivery_company, String invoice_number) {
+		log.info(ord_num);
+		log.info(delivery_company);
+		log.info(invoice_number);
+		
+		
+		
+		int result = orderService.deliveryOrder(ord_num, delivery_company, invoice_number);
+		System.out.println(result);
+		
+		return "admin/order/admin_delivery";
+	}
+	
 	
 	@PostMapping("/order/recieved")
 	public String recievedOrder(OrderDTO ordDTO) {

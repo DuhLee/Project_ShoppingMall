@@ -29,7 +29,8 @@ public class OrderDTO {
 	Integer payment_num;
 	String payment_name;
 	
-	
+	String delivery_company;
+	String invoice_number;
 	Integer ord_status;
 	String	status_name;
 	Integer	total_amount;

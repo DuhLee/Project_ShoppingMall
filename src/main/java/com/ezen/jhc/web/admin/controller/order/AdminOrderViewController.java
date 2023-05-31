@@ -29,7 +29,7 @@ public class AdminOrderViewController {
 		orderDTO = orderService.getOrderOrd_num(ord_num);
 		
 		orderDetails = orderService.getOrderDetailList(ord_num);
-		
+		System.out.println(orderDTO);
 		model.addAttribute("order", orderDTO);
 		model.addAttribute("orderDetails", orderDetails);
 		

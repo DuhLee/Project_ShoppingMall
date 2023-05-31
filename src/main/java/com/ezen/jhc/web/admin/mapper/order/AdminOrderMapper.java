@@ -22,6 +22,8 @@ public interface AdminOrderMapper {
 	
 	int[] getMemberRecentOrders(@Param("mem_num")Integer mem_num);
 	
+	Integer updateDelivery(@Param("ord_num")Integer ord_num, @Param("delivery_company")String delivery_company, @Param("invoice_number")String invoice_number);
+	
 	Integer updateOrderStatus(OrderDTO ordDTO);
 	
 	List<OrderStatusDTO> orderStatuses();

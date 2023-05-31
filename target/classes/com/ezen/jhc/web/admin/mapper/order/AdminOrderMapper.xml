@@ -151,6 +151,18 @@
 			ord_num = #{ord_num}
 	</update>
 	
+	<update id="updateDelivery">
+		UPDATE
+			orders
+		SET
+			ord_status = 4,
+			delivery_company = #{delivery_company},
+			invoice_number = #{invoice_number}
+		WHERE
+			ord_num = #{ord_num}
+	
+	</update>
+	
 	<select id="orderStatuses" resultType="com.ezen.jhc.web.admin.dto.order.OrderStatusDTO">
 		SELECT * FROM order_statuses
 	</select>

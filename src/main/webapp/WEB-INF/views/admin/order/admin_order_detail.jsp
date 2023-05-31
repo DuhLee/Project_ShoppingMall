@@ -2,6 +2,34 @@
     <!-- include header -->
 
     <%@ include file="../include/header.jsp" %>
+    
+    <script>
+    	
+    	$(document).ready(function(){
+    		
+    		let myKey = 'fR1YiDAtIBJSWYbp80y9Xg';
+    		let t_code = $('#delivery_company').text();
+    		let t_invoice = $('#invoice_number').text();
+    		
+    		console.log(t_code);
+    		console.log(t_invoice);
+    		$.ajax({
+    			
+    			type: "GET",
+    			dataType: "json",
+    			url: "http://info.sweettracker.co.kr/api/v1/trackingInfo?t_code=" + t_code + "&t_invoice=" + t_invoice + "&t_key=" + myKey,
+    			success: function(data) {
+    				console.log(data);
+    				let deliveryData = data.completeYN
+    				
+    				$("#delivery_complete").html(deliveryData);
+    			}
+    			
+    		});
+    		
+    	});
+		
+	</script>
 
 
         <!-- admin_home -->
@@ -112,6 +140,18 @@
                                                           사항</label></th>
                                                       <td><label id="ord_request">${order.ord_request}</label></td>
                                                     </tr>
+                                                    <tr>
+                                                      <th class="table-secondary"><label for="ord_request" class="badge text-bg-dark">택배사</label></th>
+                                                      <td><label id="delivery_company">${order.delivery_company}</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th class="table-secondary"><label for="ord_request" class="badge text-bg-dark">운송장번호</label></th>
+                                                      <td><label id="invoice_number">${order.invoice_number}</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th class="table-secondary"><label for="delivery_complete" class="badge text-bg-dark">배송상태</label></th>
+                                                      <td id=delivery_complete></td>
+                                                    </tr>
                                                   </tbody>
                                                 </table>
                                               </div>
@@ -157,7 +197,6 @@
 
                     </div>
                 </div>
-
 
 	<script src="<%=request.getContextPath()%>/assets/admin/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/admin/bootstrap/js/bootstrap.bundle.js"></script>

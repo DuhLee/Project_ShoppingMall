@@ -20,6 +20,8 @@ public interface AdminOrderService {
 	
 	List<OrderDetailDTO> getOrderDetailList(Integer ord_num);
 	
+	Integer deliveryOrder(Integer ord_num, String delivery_company, String invoice_number);
+	
 	Integer recievedOrder(OrderDTO ordDTO);
 	
 	Integer cancelOrder(OrderDTO ordDTO);

@@ -44,6 +44,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/prod_reg.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/file_upload.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/order_view.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/order.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/sales.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/member.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/admin/js/contact.js"></script>
